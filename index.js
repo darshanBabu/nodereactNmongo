@@ -13,9 +13,10 @@
  });
  });
  */
-import config from './config';
-import express from 'express';
-import fs from 'fs';
+var http=require('http');
+var express=require('express');
+var fs=require('fs');
+
 const server = express();
 /*
  * two ways to serve the static html files
@@ -27,12 +28,17 @@ const server = express();
 /*
  * second method is the server.get and fs mothod
  */
-/*server.get('/about.html', (req, res) => {
- fs.readFile('./public/index.html', (err, data) => {
- res.send(data.toString());
- });
- });
- */
+server.get('/about.html', (req, res) => {
+    fs.readFile('./public/about.html', (err, data) => {
+        res.send(data.toString());
+    });
+});
+server.get('/', (req, res) => {
+    fs.readFile('./public/index.html', (err, data) => {
+        res.send(data.toString());
+    });
+});
+
 /*
  * setting the view enginr to ejs-next
  * 
